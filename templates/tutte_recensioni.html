@@ -61,15 +61,16 @@
             <div class="meta">
                 Scritto da {{ rec.partecipante.nome }} {{ rec.partecipante.cognome }} il {{ rec.data|date:"d/m/Y" }}
             </div>
-            <div class="stars">
-                {% for i in star_range %}
-                    {% if i <= rec.punteggio %}
-                        ⭐
-                    {% else %}
-                        ☆
-                    {% endif %}
-                {% endfor %}
-            </div>
+           <div class="stars">
+    {% for i in "12345"|make_list %}
+        {% if forloop.counter <= rec.punteggio %}
+            ⭐
+        {% else %}
+            ☆
+        {% endif %}
+    {% endfor %}
+</div>
+
             <p>{{ rec.testo }}</p>
         </div>
     {% empty %}
