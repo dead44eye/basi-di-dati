@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Prenotazione Effettuata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 480px;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffcc00;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin: 0.75rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.75rem;
+            background: #ffcc00;
+            color: #000;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #ffe066;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <h1>🎉 Prenotazione Riuscita!</h1>
+        <p>Hai prenotato per:</p>
+        <p><strong>{{ evento.nome }}</strong></p>
+        <p>Codice conferma 8900765: <strong>{{ prenotazione.codice_conferma }}</strong></p>
+        <a class="btn" href="{% url 'eventi' %}">🔙 Torna agli eventi</a>
+    </div>
+</body>
+</html>

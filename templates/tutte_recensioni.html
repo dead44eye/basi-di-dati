@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutte le Recensioni - MusicTour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+     body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: url('https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            padding: 2rem;
+        }
+
+
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            color: #ffcc00;
+            margin-bottom: 2rem;
+        }
+
+        .recensione {
+            background: #222;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .recensione h2 {
+            margin: 0 0 0.5rem 0;
+            color: #ffcc00;
+        }
+
+        .recensione .meta {
+            font-size: 0.9rem;
+            color: #bbb;
+            margin-bottom: 0.5rem;
+        }
+
+        .recensione .stars {
+            color: #ffcc00;
+            margin-bottom: 0.5rem;
+        }
+
+        .recensione p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1> Tutte le Recensioni</h1>
+
+    {% for rec in recensioni %}
+        <div class="recensione">
+            <h2>{{ rec.evento.nome }}</h2>
+            <div class="meta">
+                Scritto da {{ rec.partecipante.nome }} {{ rec.partecipante.cognome }} il {{ rec.data|date:"d/m/Y" }}
+            </div>
+            <div class="stars">
+                {% for i in star_range %}
+                    {% if i <= rec.punteggio %}
+                        ⭐
+                    {% else %}
+                        ☆
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <p>{{ rec.testo }}</p>
+        </div>
+    {% empty %}
+        <p>Nessuna recensione disponibile al momento.</p>
+    {% endfor %}
+<a href="{% url 'home' %}" class="btn-home"> Torna alla Home</a>
+
+<style>
+    .btn-home {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.7rem 1.5rem;
+        background-color: #ffcc00;
+        color: #000;
+        font-weight: bold;
+        border-radius: 10px;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        z-index: 999;
+    }
+
+    .btn-home:hover {
+        background-color: #ffd633;
+    }
+</style>
+
+</body>
+</html>

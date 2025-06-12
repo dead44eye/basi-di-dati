@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Crea Evento - MusicTour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.85);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffcc00;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: #ffcc00;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.6rem;
+            margin-bottom: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            background: #333;
+            color: #fff;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background-color: #ffcc00;
+            color: #000;
+            font-weight: bold;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: #ffd633;
+        }
+
+        .btn-home {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+            text-decoration: none;
+            color: #ccc;
+        }
+
+        .btn-home:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <h1>Crea un Nuovo Evento 🎤</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="nome">Nome evento</label>
+            <input type="text" name="nome" id="nome" required>
+
+            <label for="data">Data e ora</label>
+            <input type="datetime-local" name="data" id="data" required>
+
+            <label for="descrizione">Descrizione</label>
+            <textarea name="descrizione" id="descrizione" rows="4"></textarea>
+
+            <label for="capienza">Capienza</label>
+            <input type="number" name="capienza" id="capienza" required>
+
+            <label for="luogo">Luogo</label>
+            <select name="luogo" id="luogo">
+                {% for luogo in luoghi %}
+                    <option value="{{ luogo.id }}">{{ luogo.nome }} - {{ luogo.indirizzo }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="btn-submit">Crea Evento</button>
+        </form>
+
+        <a href="{% url 'gestisci_eventi' %}" class="btn-home">← Torna alla Gestione Eventi</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi Siamo - MusicTour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.85);
+            min-height: 100vh;
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            background-color: #222;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffcc00;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        p, li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .highlight {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-home {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .btn-home a {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 0.7rem 1.5rem;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-home a:hover {
+            background-color: #ffd633;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            <h1>Chi Siamo</h1>
+            <p><span class="highlight">MusicTour</span> è molto più di una semplice piattaforma: è un sogno nato dall'amore profondo per la <span class="highlight">musica dal vivo</span> e dalla volontà di connettere persone attraverso esperienze indimenticabili.</p>
+
+            <p>Il nostro team è composto da appassionati di musica, sviluppatori, designer e promoter che credono nel potere della musica di unire le persone. MusicTour nasce con l’obiettivo di abbattere le barriere tra artisti, fan e location, offrendo un ecosistema digitale semplice, efficiente e coinvolgente.</p>
+
+            <p>La nostra missione è chiara:</p>
+            <ul>
+                <li> Far scoprire eventi musicali di ogni genere in tutta Italia</li>
+                <li> Consentire prenotazioni rapide e sicure</li>
+                <li> Offrire uno spazio per condividere esperienze tramite recensioni autentiche</li>
+                <li> Supportare artisti emergenti e valorizzare location uniche</li>
+            </ul>
+
+            <p>Ogni concerto, ogni evento, ogni recensione sulla piattaforma contribuisce a costruire una comunità di amanti della musica in cui ogni voce conta.</p>
+
+            <p>Crediamo che la musica debba essere accessibile a tutti: ecco perché abbiamo realizzato un’interfaccia intuitiva, accessibile da qualsiasi dispositivo, e un sistema di prenotazioni trasparente e veloce.</p>
+
+            <p>Che tu sia un fan alla ricerca di nuove emozioni, un artista in cerca di visibilità o un’organizzazione pronta a ospitare un live, <span class="highlight">MusicTour</span> è il luogo giusto per te.</p>
+
+            <div class="btn-home">
+                <a href="{% url 'home' %}">🎵 Torna alla Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

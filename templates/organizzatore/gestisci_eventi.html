@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestione Eventi - MusicTour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.85);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffcc00;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .event {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .event h3 {
+            margin-top: 0;
+            color: #ffcc00;
+        }
+
+        .event p {
+            margin: 0.3rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #ffcc00;
+            color: #000;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #ffd633;
+        }
+
+        .top-links {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .top-links a {
+            margin: 0 1rem;
+        }
+
+        .btn-home {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+            text-decoration: none;
+            color: #ccc;
+        }
+
+        .btn-home:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <h1>I Miei Eventi 🎶</h1>
+
+        <div class="top-links">
+            <a href="{% url 'crea_evento' %}" class="btn">➕ Crea Nuovo Evento</a>
+        </div>
+
+        {% if eventi %}
+            {% for evento in eventi %}
+                <div class="event">
+                    <h3>{{ evento.nome }}</h3>
+                    <p><strong>Data:</strong> {{ evento.data }}</p>
+                    <p><strong>Luogo:</strong> {{ evento.luogo.nome }}</p>
+                    <p><strong>Capienza:</strong> {{ evento.capienza }}</p>
+                    <a href="{% url 'modifica_evento' evento.id %}" class="btn">✏️ Modifica</a>
+                    <a href="{% url 'elimina_evento' evento.id %}" class="btn" style="background:#cc0000; color:#fff;">🗑️ Elimina</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center;">Non hai ancora creato nessun evento.</p>
+        {% endif %}
+
+        <a href="{% url 'home' %}" class="btn-home">← Torna alla Home</a>
+    </div>
+</body>
+</html>

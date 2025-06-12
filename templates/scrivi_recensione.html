@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Scrivi una Recensione - {{ evento.nome }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            color: #ffcc00;
+            margin-bottom: 1.5rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            padding: 1rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 1.5rem;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .stars {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .stars input {
+            display: none;
+        }
+
+        .stars label {
+            font-size: 2rem;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .stars input:checked ~ label,
+        .stars label:hover,
+        .stars label:hover ~ label {
+            color: #ffcc00;
+        }
+
+        button {
+            background-color: #ffcc00;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e6b800;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>📝 Recensione per "{{ evento.nome }}"</h2>
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="stars">
+                {% for i in "54321" %}
+                    <input type="radio" id="star{{ i }}" name="punteggio" value="{{ i }}">
+                    <label for="star{{ i }}">&#9733;</label>
+                {% endfor %}
+            </div>
+
+            <textarea name="testo" placeholder="Scrivi qui la tua recensione..." required></textarea>
+
+            <button type="submit">Invia Recensione</button>
+        </form>
+    </div>
+</body>
+</html>

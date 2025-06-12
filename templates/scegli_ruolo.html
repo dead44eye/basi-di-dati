@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <title>Scegli il Ruolo - MusicTour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        body {
+            margin: 0;
+            background: url('https://images.unsplash.com/photo-1533230408708-41d8f8f56fc2') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+        }
+
+       .overlay {
+    background-color: rgba(0, 0, 0, 0.95);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffde00;
+            font-weight: 700;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            text-shadow: 1px 1px 6px rgba(255, 222, 0, 0.8);
+        }
+
+        form {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .btn {
+            flex: 1 1 200px;
+            padding: 1rem 0;
+            background: #ffde00;
+            color: #000;
+            font-weight: 700;
+            font-size: 1.3rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(255, 222, 0, 0.6);
+            cursor: pointer;
+            border: 3px solid #000;
+            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            user-select: none;
+        }
+
+        .btn i {
+            font-size: 1.5rem;
+        }
+
+        .btn:hover {
+            background: #000;
+            color: #ffde00;
+            box-shadow: 0 6px 20px #ffde00;
+            border-color: #ffde00;
+        }
+
+        .error {
+            margin-top: 2rem;
+            color: #ff4444;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px #ff4444;
+        }
+
+        @media (max-width: 480px) {
+            form {
+                flex-direction: column;
+            }
+            .btn {
+                flex: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <h1>Scegli con quale ruolo accedere</h1>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="ruolo" value="partecipante" class="btn">
+                <i class="fas fa-ticket-alt"></i> Partecipante
+            </button>
+            <button type="submit" name="ruolo" value="organizzatore" class="btn">
+                <i class="fas fa-tools"></i> organizzatore
+            </button>
+        </form>
+        {% if errore %}
+            <div class="error">{{ errore }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>

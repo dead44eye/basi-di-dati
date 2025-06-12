@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Eventi - MusicTour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+        }
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.8);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffcc00;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .event {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .event h3 {
+            margin-top: 0;
+            color: #ffcc00;
+        }
+        .event p {
+            margin: 0.3rem 0;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #ffcc00;
+            color: #000;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background: #ffd633;
+        }
+        .nav-links {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .nav-links a {
+            margin: 0 1rem;
+        }
+        .logout {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .logout a {
+            color: #ccc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <h1>Eventi disponibili 🎵</h1>
+
+        <!-- Link a prenotazioni -->
+        <div class="nav-links">
+            <a href="{% url 'mie_prenotazioni' %}" class="btn">🎫 Le mie prenotazioni</a>
+        </div>
+
+        {% if eventi %}
+            {% for evento in eventi %}
+                <div class="event">
+                    <h3>{{ evento.nome }}</h3>
+                    <p><strong>Data:</strong> {{ evento.data }}</p>
+                    <p><strong>Luogo:</strong> {{ evento.luogo.nome }} (Capienza: {{ evento.capienza }})</p>
+                    <p><strong>Descrizione:</strong> {{ evento.descrizione }}</p>
+                    <a class="btn" href="{% url 'prenota_evento' evento.id %}">Prenota</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center;">Nessun evento disponibile al momento.</p>
+        {% endif %}
+
+       <a href="{% url 'home' %}" class="btn-home"> Torna alla Home</a>
+
+<style>
+    .btn-home {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.7rem 1.5rem;
+        background-color: #ffcc00;
+        color: #000;
+        font-weight: bold;
+        border-radius: 10px;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        z-index: 999;
+    }
+
+    .btn-home:hover {
+        background-color: #ffd633;
+    }
+</style>
+
+        </div>
+    </div>
+</body>
+</html>
